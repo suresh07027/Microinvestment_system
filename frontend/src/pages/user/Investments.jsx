@@ -5,6 +5,7 @@ import Card from '../../components/ui/Card'
 import Button from '../../components/ui/Button'
 import Input, { Select } from '../../components/ui/Input'
 import { PageHeader, StatCard, Alert, Table, Badge, Loader } from '../../components/ui/misc'
+import { API_URL } from '../../config'
 import investmentsBg from '../../assets/roundup-bg.png'
 
 /**
@@ -80,7 +81,7 @@ function Investments() {
   }, [])
 
   const fetchTransactions = (userId) => {
-    fetch(`http://localhost:5000/api/transactions/${userId}`)
+    fetch(`${API_URL}/api/transactions/${userId}`)
       .then(res => res.json())
       .then(data => {
         setTransactions(data)
@@ -93,7 +94,7 @@ function Investments() {
     setAdding(true)
 
     try {
-      const res = await fetch('http://localhost:5000/api/transactions', {
+      const res = await fetch(`${API_URL}/api/transactions`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

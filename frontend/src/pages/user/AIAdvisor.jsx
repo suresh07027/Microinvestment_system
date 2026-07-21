@@ -10,6 +10,7 @@ import {
 import Card from '../../components/ui/Card'
 import { PageHeader, Badge, Loader } from '../../components/ui/misc'
 import { GlassTooltip, chartGrid, chartAxisTick } from '../../components/ui/chartTheme.jsx'
+import { API_URL } from '../../config'
 import roundUpBg from '../../assets/roundup-bg.png'
 
 /**
@@ -77,8 +78,8 @@ function AIAdvisor() {
     const userData = JSON.parse(localStorage.getItem('user'))
 
     Promise.all([
-      fetch(`http://localhost:5000/api/transactions/${userData._id}`).then((r) => r.json()).catch(() => []),
-      fetch(`http://localhost:5000/api/users/${userData._id}`).then((r) => r.json()).catch(() => ({})),
+      fetch(`${API_URL}/api/transactions/${userData._id}`).then((r) => r.json()).catch(() => []),
+      fetch(`${API_URL}/api/users/${userData._id}`).then((r) => r.json()).catch(() => ({})),
     ]).then(([txns, userDoc]) => {
       setTransactions(Array.isArray(txns) ? txns : [])
       if (userDoc?.buckets) setBuckets(userDoc.buckets)

@@ -5,6 +5,7 @@ import Card from '../../components/ui/Card'
 import Button from '../../components/ui/Button'
 import Input from '../../components/ui/Input'
 import { PageHeader, StatCard, Alert, Loader } from '../../components/ui/misc'
+import { API_URL } from '../../config'
 import roundUpBg from '../../assets/roundup-bg.png'
 
 /**
@@ -78,7 +79,7 @@ function Profile() {
     setName(userData?.name || '')
     setEmail(userData?.email || '')
 
-    fetch(`http://localhost:5000/api/transactions/${userData._id}`)
+    fetch(`${API_URL}/api/transactions/${userData._id}`)
       .then((res) => res.json())
       .then((data) => {
         setTransactions(Array.isArray(data) ? data : [])
@@ -91,7 +92,7 @@ function Profile() {
     if (!user?._id) return
     setSaving(true)
     try {
-      const res = await fetch(`http://localhost:5000/api/users/${user._id}`, {
+      const res = await fetch(`${API_URL}/api/users/${user._id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email }),

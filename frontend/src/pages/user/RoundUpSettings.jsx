@@ -4,6 +4,7 @@ import { CheckCircle2 } from 'lucide-react'
 import Button from '../../components/ui/Button'
 import Input from '../../components/ui/Input'
 import { PageHeader, Alert, Toggle } from '../../components/ui/misc'
+import { API_URL } from '../../config'
 import roundUpBg from '../../assets/roundup-bg.png'
 
 /**
@@ -91,7 +92,7 @@ function RoundUpSettings() {
     setUser(userData)
 
     // Fetch current settings from database
-    fetch(`http://localhost:5000/api/users/${userData._id}`)
+    fetch(`${API_URL}/api/users/${userData._id}`)
       .then(res => res.json())
       .then(data => {
         setEnabled(data.roundUpEnabled)
@@ -106,7 +107,7 @@ function RoundUpSettings() {
     setSuccess(false)
 
     try {
-      const res = await fetch(`http://localhost:5000/api/users/${user._id}`, {
+      const res = await fetch(`${API_URL}/api/users/${user._id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

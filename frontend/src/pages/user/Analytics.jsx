@@ -5,6 +5,7 @@ import { Wallet, Calculator, Receipt } from 'lucide-react'
 import Card from '../../components/ui/Card'
 import { PageHeader, StatCard, Loader } from '../../components/ui/misc'
 import { GlassTooltip, CHART_COLORS, chartGrid, chartAxisTick } from '../../components/ui/chartTheme.jsx'
+import { API_URL } from '../../config'
 import roundUpBg from '../../assets/roundup-bg.png'
 
 /**
@@ -69,7 +70,7 @@ function Analytics() {
 
   useEffect(() => {
     const userData = JSON.parse(localStorage.getItem('user'))
-    fetch(`http://localhost:5000/api/transactions/${userData._id}`)
+    fetch(`${API_URL}/api/transactions/${userData._id}`)
       .then(res => res.json())
       .then(data => {
         setTransactions(data)

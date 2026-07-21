@@ -3,6 +3,7 @@ import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import { Users, Wallet, Receipt } from 'lucide-react'
 import Card from '../../components/ui/Card'
 import { PageHeader, StatCard, Table, Badge, Loader } from '../../components/ui/misc'
+import { API_URL } from '../../config'
 import roundUpBg from '../../assets/roundup-bg.png'
 
 /**
@@ -66,7 +67,7 @@ function AdminDashboard() {
   const pageRef = useRef(null)
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/users')
+    fetch(`${API_URL}/api/users`)
       .then(res => res.json())
       .then(data => {
         setUsers(data)

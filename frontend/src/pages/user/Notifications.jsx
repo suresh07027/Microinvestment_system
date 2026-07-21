@@ -3,6 +3,7 @@ import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import { Wallet, Receipt } from 'lucide-react'
 import Card from '../../components/ui/Card'
 import { PageHeader, StatCard } from '../../components/ui/misc'
+import { API_URL } from '../../config'
 import roundUpBg from '../../assets/roundup-bg.png'
 
 /**
@@ -69,7 +70,7 @@ function Notifications() {
     const userData = JSON.parse(localStorage.getItem('user'))
     setUser(userData)
 
-    fetch(`http://localhost:5000/api/transactions/${userData._id}`)
+    fetch(`${API_URL}/api/transactions/${userData._id}`)
       .then(res => res.json())
       .then(data => setTransactions(data))
   }, [])

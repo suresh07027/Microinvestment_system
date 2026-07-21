@@ -15,6 +15,7 @@ import {
   CheckCircle2,
   Sparkles,
 } from 'lucide-react'
+import { API_URL } from '../../config'
 import financeBg from '../../assets/dashboard-bg.png'
 
 const coinHeights = [2, 3, 4, 3, 5, 6, 5, 7, 8, 7, 9, 10, 9, 11, 12, 11, 13, 14]
@@ -121,12 +122,12 @@ function Dashboard() {
     setUser(userData)
     if (!userData?._id) return
 
-    fetch(`http://localhost:5000/api/transactions/${userData._id}`)
+    fetch(`${API_URL}/api/transactions/${userData._id}`)
       .then((res) => res.json())
       .then((data) => setTransactions(Array.isArray(data) ? data : []))
       .catch(() => {})
 
-    fetch(`http://localhost:5000/api/users/${userData._id}`)
+    fetch(`${API_URL}/api/users/${userData._id}`)
       .then((res) => res.json())
       .then((data) => setRoundLevel(data.roundUpLevel || 10))
       .catch(() => {})

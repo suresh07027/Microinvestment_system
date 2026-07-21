@@ -5,6 +5,7 @@ import Card from '../../components/ui/Card'
 import Button from '../../components/ui/Button'
 import { PageHeader, Alert } from '../../components/ui/misc'
 import roundUpBg from '../../assets/roundup-bg.png'
+import { API_URL } from '../../config'
 
 /**
  * 3D animated background image — confined to this page's own content area
@@ -84,7 +85,7 @@ function Buckets() {
     const userData = JSON.parse(localStorage.getItem('user'))
     setUser(userData)
 
-    fetch(`http://localhost:5000/api/users/${userData._id}`)
+    fetch(`${API_URL}/api/users/${userData._id}`)
       .then(res => res.json())
       .then(data => {
         if (data.buckets) setBuckets(data.buckets)
@@ -160,7 +161,7 @@ function Buckets() {
     }
 
     try {
-      const res = await fetch(`http://localhost:5000/api/users/${user._id}`, {
+      const res = await fetch(`${API_URL}/api/users/${user._id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
