@@ -4,6 +4,7 @@ import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from
 import { Coins, AlertCircle, TrendingUp, ShieldCheck, LineChart, Sparkles } from 'lucide-react'
 import Button from '../components/ui/Button'
 import Input from '../components/ui/Input'
+import { API_URL } from '../config'
 import loginBg from '../assets/login-bg.png'
 
 /** A single floating decorative element (icon / badge) that drifts up & down forever. */
@@ -64,8 +65,8 @@ function Login({ setToken }) {
     setError('')
 
     const url = isLogin
-      ? 'http://localhost:5000/api/auth/login'
-      : 'http://localhost:5000/api/auth/register'
+      ? `${API_URL}/api/auth/login`
+      : `${API_URL}/api/auth/register`
 
     const body = isLogin
       ? { email, password }

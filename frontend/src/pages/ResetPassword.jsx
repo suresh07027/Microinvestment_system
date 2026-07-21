@@ -6,6 +6,7 @@ import Card from '../components/ui/Card'
 import Button from '../components/ui/Button'
 import Input from '../components/ui/Input'
 import { Loader } from '../components/ui/misc'
+import { API_URL } from '../config'
 
 const MIN_PASSWORD_LENGTH = 8
 
@@ -23,7 +24,7 @@ function ResetPassword() {
   const [success, setSuccess] = useState(false)
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/auth/reset-password/${token}/valid`)
+    fetch(`${API_URL}/api/auth/reset-password/${token}/valid`)
       .then((res) => res.json())
       .then((data) => {
         setTokenValid(!!data.valid)
@@ -56,7 +57,7 @@ function ResetPassword() {
 
     setLoading(true)
     try {
-      const res = await fetch(`http://localhost:5000/api/auth/reset-password/${token}`, {
+      const res = await fetch(`${API_URL}/api/auth/reset-password/${token}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ password, confirmPassword }),

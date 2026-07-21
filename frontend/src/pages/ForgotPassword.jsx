@@ -4,6 +4,7 @@ import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from
 import { Coins, AlertCircle, KeyRound, Mail, Send, MailCheck, ArrowLeft, ShieldCheck, Sparkles } from 'lucide-react'
 import Button from '../components/ui/Button'
 import Input from '../components/ui/Input'
+import { API_URL } from '../config'
 import loginBg from '../assets/login-bg.png'
 
 /** A single floating decorative element (icon / badge) that drifts up & down forever. */
@@ -64,7 +65,7 @@ function ForgotPassword() {
 
     setLoading(true)
     try {
-      const res = await fetch('http://localhost:5000/api/auth/forgot-password', {
+      const res = await fetch(`${API_URL}/api/auth/forgot-password`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),
