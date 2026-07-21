@@ -76,4 +76,4 @@ Contributing
 License
 - MIT
 
-If you'd like, I can also add example `.env` templates, API docs, or update package scripts. Want me to add any of those?
+
