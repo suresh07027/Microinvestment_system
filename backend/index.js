@@ -13,14 +13,8 @@ dotenv.config();
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({ origin: "https://microinvestment-system.vercel.app" }));
 app.use(express.json());
-
-// Check if .env is loaded
-console.log("====================================");
-console.log("MONGO_URI:", process.env.MONGO_URI);
-console.log("PORT:", process.env.PORT);
-console.log("====================================");
 
 // Connect to MongoDB
 mongoose
@@ -33,7 +27,6 @@ mongoose
     console.error("Message:", err.message);
     console.error("Name:", err.name);
     console.error("Code:", err.code);
-    console.error("Full Error:", err);
   });
 
 // Routes
